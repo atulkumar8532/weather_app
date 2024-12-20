@@ -5,7 +5,7 @@ import { useEffect } from "react";
 function App() {
   const [city, setCity] = useState("Delhi");
   const [weatherData, setWeatherData] = useState(null);
-  const [error, setError] = useState(null);
+  // const [error, setError] = useState(null);
  
   const currentDate = new Date();
  
