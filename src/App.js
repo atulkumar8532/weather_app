@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
+
  
 function App() {
   const [city, setCity] = useState("Delhi");
@@ -17,7 +18,7 @@ function App() {
   const day = currentDate.getDate();
   const year = currentDate.getFullYear();
  
-  const formattedDate = `${day} ${month} ${year}`;
+  const formattedDate = `${month} ${day} ${year}`;
  
   const API_KEY = "bcda10ba323e88e96cb486015a104d1d"; // Replace 'YOUR_API_KEY' with your actual API key from OpenWeatherMap
  
@@ -60,27 +61,30 @@ function App() {
     fetchWeatherData();
   };
  
-  const getWeatherIconUrl = (main) => {
-    switch (main) {
+
+const getWeatherIconUrl = (main) => {
+  switch (main) {
+    case "Clouds":
+      return "/snowy.webp"; 
       case "Clear":
-        return "/sun.png"; // Path to your sunny weather icon
-      case "Rain":
-        return "/icons/rainy.png"; // Path to your rainy weather icon
-      case "Snow":
-        return "/icons/snowy.png"; // Path to your snowy weather icon
-      case "Haze":
-        return "/sun.png"; // Path to your haze weather icon
-      // Add more cases for other weather conditions as needed
-      default:
-        return null;
-    }
-  };
+      return "/thunder.png"; 
+    case "Rain":
+      return "/rain_with_cloud.png"; 
+    case "Mist":
+      return "/Tornado.png"; 
+    case "Haze":  
+      return "/sun.png"; 
+    default:
+      return null;
+  }
+};
+
  
  
   return (
     <div className="App">
        
- 
+   
       <div className="container">
         {weatherData && (
           <>
@@ -94,7 +98,7 @@ function App() {
               <form className="form" onSubmit={handleSubmit}>
                 <input
                   type="text"
-                  class="input"
+                  className="input"
                   placeholder="Enter city name"
                   value={city}
                   onChange={handleInputChange}
